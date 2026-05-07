@@ -24,6 +24,11 @@ function Dashboard() {
       status: "Pending",
     });
 
+  // ================= API URL =================
+
+  const API_URL =
+    "https://task-manager-app-production-fcb5.up.railway.app";
+
   // ================= STATS =================
 
   const totalTasks = tasks.length;
@@ -47,7 +52,7 @@ function Dashboard() {
     try {
 
       const res = await axios.get(
-        `http://localhost:5000/api/tasks/${user.id}`
+        `${API_URL}/api/tasks/${user.id}`
       );
 
       setTasks(res.data);
@@ -66,7 +71,7 @@ function Dashboard() {
     try {
 
       const res = await axios.get(
-        "http://localhost:5000/api/tasks/admin/all-tasks"
+        `${API_URL}/api/tasks/admin/all-tasks`
       );
 
       setAllTasks(res.data);
@@ -119,7 +124,7 @@ function Dashboard() {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/tasks",
+        `${API_URL}/api/tasks`,
         {
           ...formData,
           user_id: user.id,
@@ -162,7 +167,7 @@ function Dashboard() {
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/tasks/${id}`
+        `${API_URL}/api/tasks/${id}`
       );
 
       fetchTasks();
@@ -189,7 +194,7 @@ function Dashboard() {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/tasks/${id}`,
+        `${API_URL}/api/tasks/${id}`,
         { status }
       );
 
