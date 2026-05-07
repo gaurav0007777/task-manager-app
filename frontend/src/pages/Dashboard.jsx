@@ -27,7 +27,7 @@ function Dashboard() {
   // ================= API URL =================
 
   const API_URL =
-    "https://task-manager-app-production-fcb5.up.railway.app";
+    "https://task-manager-app-production-9a8e.up.railway.app";
 
   // ================= STATS =================
 
