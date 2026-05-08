@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
 
   try {
 
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     // validation
 
@@ -62,11 +62,11 @@ router.post("/register", async (req, res) => {
         // insert user
 
         const insertSql =
-          "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+          "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
 
         db.query(
           insertSql,
-          [name, email, hashedPassword],
+          [name, email, hashedPassword, role],
           (insertErr, result) => {
 
             if (insertErr) {

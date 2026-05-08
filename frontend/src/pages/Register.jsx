@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 import axios from "axios";
-
 import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
@@ -12,6 +10,7 @@ function Register() {
     name: "",
     email: "",
     password: "",
+    role: "user",
   });
 
   const handleChange = (e) => {
@@ -39,13 +38,13 @@ function Register() {
 
     } catch (error) {
 
-  alert(
-    error.response?.data?.message
-    || "Something went wrong"
-  );
+      alert(
+        error.response?.data?.message
+        || "Something went wrong"
+      );
 
-  console.log(error);
-}
+      console.log(error);
+    }
   };
 
   return (
@@ -66,19 +65,17 @@ function Register() {
           value={formData.name}
           onChange={(e) => {
 
-          const value = e.target.value;
+            const value = e.target.value;
 
-         // only alphabets + spaces allowed
+            if (/^[A-Za-z\s]*$/.test(value)) {
 
-         if (/^[A-Za-z\s]*$/.test(value)) {
-
-          setFormData({
-            ...formData,
-            name: value,
-          });
-        }
-      }}
-/>
+              setFormData({
+                ...formData,
+                name: value,
+              });
+            }
+          }}
+        />
 
         <input
           type="email"
@@ -95,6 +92,15 @@ function Register() {
           value={formData.password}
           onChange={handleChange}
         />
+
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
 
         <button type="submit">
           Register
